@@ -143,7 +143,7 @@ python3 -m unittest                 # tests (offline)
 python3 gen_emoji_xcompose.py       # print the generated rules
 ```
 
-Built-in extras live in `CUSTOM` in `gen_emoji_xcompose.py`.
+Built-in extras (like `tflip`) live in [`custom.txt`](custom.txt).
 
 ## License
 

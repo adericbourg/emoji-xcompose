@@ -1,6 +1,6 @@
 import unittest
 
-from gen_emoji_xcompose import build, keysyms, parse_gemoji, parse_wincompose
+from gen_emoji_xcompose import build, keysyms, parse_custom, parse_gemoji, parse_wincompose
 
 
 class GenTest(unittest.TestCase):
@@ -30,6 +30,10 @@ class GenTest(unittest.TestCase):
 
     def test_escaping(self):
         self.assertIn(r'"a\"b\\c"', build([("q", 'a"b\\c')])[0])
+
+    def test_parse_custom(self):
+        text = "# comment\n\ntflip (╯°□°)╯︵ ┻━┻\nlenny ( ͡° ͜ʖ ͡°)\n"
+        self.assertEqual(parse_custom(text), [("tflip", "(╯°□°)╯︵ ┻━┻"), ("lenny", "( ͡° ͜ʖ ͡°)")])
 
     def test_parsers(self):
         self.assertEqual(parse_gemoji([{"emoji": "👍", "aliases": ["+1", "thumbsup"]}, {"aliases": ["x"]}]),
