@@ -3,3 +3,4 @@
 # These win over gemoji and WinCompose names. Lines starting with # are ignored.
 
 tflip (╯°□°)╯︵ ┻━┻
+lenny ( ͡° ͜ʖ ͡°)

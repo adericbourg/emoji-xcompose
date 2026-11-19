@@ -128,11 +128,11 @@ downloads the latest emoji lists and leaves your `~/.XCompose` alone.
 Add lines to `~/.XCompose`, after the include line:
 
 ```
-<Multi_key> <Multi_key> <l> <e> <n> <n> <y> : "( ͡° ͜ʖ ͡°)"
+<Multi_key> <Multi_key> <l> <o> <d> : "ಠ_ಠ"
 ```
 
 Pick a name that isn't the beginning of an existing name, and that no existing name is the
-beginning of (check with `grep '# len' ~/.XCompose.emoji`). Otherwise one of the two sequences
+beginning of (check with `grep '# lo' ~/.XCompose.emoji`). Otherwise one of the two sequences
 stops working.
 Don't edit `~/.XCompose.emoji`: it is replaced on every install.
 
