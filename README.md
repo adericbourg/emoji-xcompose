@@ -25,12 +25,21 @@ cd emoji-xcompose
 ./install.sh
 ```
 
-This writes `~/.XCompose.emoji` and makes sure `~/.XCompose` includes it:
+The script first checks everything and prints the result of each check:
+
+- **Required** (`[FAIL]` stops the install and nothing is changed): `python3` ≥ 3.6, basic
+  tools, a writable home directory, and that `~/.XCompose.emoji` is not a file of yours.
+- **Informational** (`[warn]`, never blocks): Compose key configured, `XCOMPOSEFILE` overriding
+  `~/.XCompose`, UTF-8 locale, input method, session type.
+
+Then it writes `~/.XCompose.emoji` and makes sure `~/.XCompose` includes it:
 
 - if `~/.XCompose` doesn't exist, it is created with `include "%L"` (your locale's standard
   Compose sequences) and the emoji include;
-- if it exists, the include is appended (after a backup to `~/.XCompose.bak`);
+- if it exists, the include is appended, after a timestamped backup (`~/.XCompose.bak.<date>`);
 - running it again refreshes the emoji list and leaves `~/.XCompose` alone.
+
+If the download fails, nothing is changed.
 
 Then log out and back in. You need a Compose key set up in your keyboard settings.
 
