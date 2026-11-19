@@ -156,7 +156,7 @@ Don't edit `~/.XCompose.emoji`: it is replaced on every install.
 
 ```sh
 python3 -m unittest                 # tests (offline)
-python3 gen_emoji_xcompose.py       # print the generated rules
+python3 src/gen_emoji_xcompose.py   # print the generated rules
 ```
 
 Built-in extras (like `tflip`) live in [`custom.txt`](custom.txt).

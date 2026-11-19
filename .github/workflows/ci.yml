@@ -15,7 +15,7 @@ jobs:
       - name: Unit tests
         run: python -m unittest -v
       - name: Generate from upstream sources
-        run: python gen_emoji_xcompose.py emoji.XCompose
+        run: python src/gen_emoji_xcompose.py emoji.XCompose
       - name: Check generated file
         run: |
           # libxkbcommon ignores sequences longer than 10 keysyms

@@ -67,7 +67,7 @@ if [ "$failed" -ne 0 ]; then
 fi
 
 echo "Downloading the emoji lists and generating $out..."
-python3 gen_emoji_xcompose.py "$out" || { echo "Nothing was changed."; exit 1; }
+python3 src/gen_emoji_xcompose.py "$out" || { echo "Nothing was changed."; exit 1; }
 
 inc='include "%H/.XCompose.emoji"'
 if [ ! -e "$conf" ]; then

@@ -1,6 +1,6 @@
 import unittest
 
-from gen_emoji_xcompose import build, keysyms, parse_custom, parse_gemoji, parse_wincompose
+from src.gen_emoji_xcompose import build, keysyms, parse_custom, parse_gemoji, parse_wincompose
 
 
 class GenTest(unittest.TestCase):
