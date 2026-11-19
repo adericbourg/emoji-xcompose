@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+"""Generate XCompose rules for emoji: <Multi_key> <Multi_key> <name> -> emoji.
+
+Usage: gen_emoji_xcompose.py [OUTPUT]   (stdout when OUTPUT is omitted)
+"""
+import json
+import os
+import re
+import sys
+import urllib.request
+
+GEMOJI_URL = "https://raw.githubusercontent.com/github/gemoji/master/db/emoji.json"
+WINCOMPOSE_URL = "https://raw.githubusercontent.com/samhocevar/wincompose/master/src/wincompose/rules/Emoji.txt"
+
+# Highest priority: wins over gemoji and WinCompose names.
+CUSTOM = {"tflip": "(╯°□°)╯︵ ┻━┻"}
+
+# libxkbcommon drops sequences longer than 10 keysyms; two are Multi_key.
+MAX_NAME_LEN = 8
+
+PUNCT = {"+": "plus", "-": "minus", "_": "underscore", ":": "colon", "'": "apostrophe",
+         ".": "period", "!": "exclam", "&": "ampersand", " ": "space"}
+
+
+def keysyms(name):
+    """Keysym names for each character of name, or None if one cannot be typed."""
+    out = []
+    for c in name:
+        if c.isascii() and c.isalnum():
+            out.append(c)
+        elif c in PUNCT:
+            out.append(PUNCT[c])
+        else:
+            return None
+    return out
+
+
+def parse_gemoji(data):
+    return [(alias, e["emoji"]) for e in data if "emoji" in e for alias in e["aliases"]]
+
+
+def parse_wincompose(text):
+    entries = []
+    for line in text.splitlines():
+        m = re.match(r'<Multi_key> <Multi_key> (.*?) : "([^"]*)"', line)
+        if m:
+            name = "".join(re.findall(r"<([^>]+)>", m.group(1)))
+            entries.append((name, m.group(2)))
+    return entries
+
+
+def build(entries):
+    """Compose lines for (name, value) pairs, earlier entries winning ties."""
+    chosen = {}
+    for name, value in entries:
+        if 0 < len(name) <= MAX_NAME_LEN and keysyms(name) and name not in chosen:
+            chosen[name] = value
+    # xkbcommon cannot hold a sequence and one of its prefixes. Keep the shorter
+    # (heart over hearts), except 1-2 char names, which would shadow too much (a, ok).
+    shadowing = {n for n in chosen if len(n) <= 2 and any(m != n and m.startswith(n) for m in chosen)}
+    kept = set()
+    for name in sorted(chosen.keys() - shadowing, key=len):
+        if not any(name[:i] in kept for i in range(1, len(name))):
+            kept.add(name)
+    lines = []
+    for name in sorted(kept):
+        lhs = " ".join(f"<{k}>" for k in ["Multi_key", "Multi_key"] + keysyms(name))
+        value = chosen[name].replace("\\", "\\\\").replace('"', '\\"')
+        lines.append(f'{lhs} : "{value}" # {name}')
+    return lines
+
+
+def fetch(url):
+    with urllib.request.urlopen(url, timeout=30) as r:
+        return r.read().decode("utf-8")
+
+
+def main():
+    entries = list(CUSTOM.items())
+    entries += parse_gemoji(json.loads(fetch(GEMOJI_URL)))
+    entries += parse_wincompose(fetch(WINCOMPOSE_URL))
+    text = "\n".join(build(entries)) + "\n"
+    if len(sys.argv) < 2:
+        sys.stdout.write(text)
+        return
+    # Write then rename, so a failure never leaves a truncated file behind.
+    tmp = sys.argv[1] + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        f.write(text)
+    os.replace(tmp, sys.argv[1])
+    print(f"{text.count(chr(10))} sequences written to {sys.argv[1]}", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()

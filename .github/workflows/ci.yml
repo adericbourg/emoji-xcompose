@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Unit tests
+        run: python -m unittest -v
+      - name: Generate from upstream sources
+        run: python gen_emoji_xcompose.py emoji.XCompose
+      - name: Check generated file
+        run: |
+          # libxkbcommon ignores sequences longer than 10 keysyms
+          awk -F' : ' 'split($1, k, " ") > 10 { print "too long: " $0; exit 1 }' emoji.XCompose
+          for name in sob +1 tflip; do grep -q -- "# $name\$" emoji.XCompose || { echo "missing $name"; exit 1; }; done
+      - name: Shellcheck
+        run: shellcheck install.sh
+      - name: Install into a scratch HOME
+        run: |
+          export HOME="$RUNNER_TEMP/home" && mkdir -p "$HOME"
+          ./install.sh && ./install.sh
+          grep -c 'XCompose.emoji' "$HOME/.XCompose" | grep -qx 1
