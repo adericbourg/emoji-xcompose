@@ -4,3 +4,102 @@
 
 tflip (╯°□°)╯︵ ┻━┻
 lenny ( ͡° ͜ʖ ͡°)
+unflip ┬─┬ノ( º _ ºノ)
+meh ¯\_(ツ)_/¯
+shades (•_•) ( •_•)>⌐■-■ (⌐■_■)
+dealwit (⌐■_■)
+lod ಠ_ಠ
+happy (◕‿◕)
+sparkly (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧
+weep (╥﹏╥)
+ragflip (ノಠ益ಠ)ノ彡┻━┻
+donger ヽ༼ຈل͜ຈ༽ﾉ
+bummer (︶︹︶)
+hiya (・ω・)ノ
+hugme (っ◕‿◕)っ
+kuma ʕ•ᴥ•ʔ
+
+# Short names for popular emoji whose usual names are too long or clash with another name.
+# Faces
+smooch 😘
+inlove 🥰
+hrteyes 😍
+phew 😅
+slight 🙂
+bigsmile 😀
+party 🥳
+sunnies 😎
+pleadin 🥺
+rolleyes 🙄
+sadface 😔
+drool 🤤
+zany 🤪
+dazzled 🤩
+upside 🙃
+grimace 😬
+oops 🤭
+neutral 😐
+devil 😈
+woozy 🥴
+vomit 🤮
+nausea 🤢
+mindblow 🤯
+cursing 🤬
+skeptic 🤨
+monocle 🧐
+yeehaw 🤠
+clown 🤡
+shush 🤫
+nerd 🤓
+cold 🥶
+cashface 🤑
+melt 🫠
+holdtear 🥹
+smiltear 🥲
+salute 🫡
+peek 🫣
+yawn 🥱
+exhale 😮‍💨
+seenoevl 🙈
+# Hearts
+pinkhrt 💖
+lovelove 💕
+broken 💔
+purple 💜
+bheart 💙
+green 💚
+yellow 💛
+oheart 🧡
+black 🖤
+white 🤍
+brown 🤎
+# Hands and people
+lookin 👀
+pright 👉
+pleft 👈
+pdown 👇
+pup 👆
+fingers 🤞
+raise 🙌
+peace ✌️
+shake 🤝
+hhands 🫶
+pinch 🤌
+nails 💅
+embrace 🫂
+# Things and symbols
+glitter ✨
+confetti 🎊
+sakura 🌸
+flutter 🦋
+crescent 🌙
+cheers 🍻
+pint 🍺
+launch 🚀
+siren 🚨
+check ✅
+cross ❌
+gold 🥇
+right ➡️
+left ⬅️
+down ⬇️

@@ -125,14 +125,16 @@ downloads the latest emoji lists and leaves your `~/.XCompose` alone.
 
 ## Add your own sequences
 
-Besides emoji, this project ships a few text faces, listed in [`custom.txt`](custom.txt):
-`tflip` → (╯°□°)╯︵ ┻━┻, `lenny` → ( ͡° ͜ʖ ͡°). You can add your own in two ways.
+Besides emoji, this project ships text faces (`tflip` → (╯°□°)╯︵ ┻━┻, `meh` → ¯\\\_(ツ)\_/¯,
+`lod` → ಠ_ಠ…) and short names for popular emoji whose usual name is too long (`hrteyes` → 😍,
+`melt` → 🫠, `check` → ✅…). They are all listed in [`custom.txt`](custom.txt). You can add your
+own in two ways.
 
 **In `custom.txt`**: one line per sequence, the name (8 characters max, no spaces), a space,
 then the text:
 
 ```
-shades (•_•) ( •_•)>⌐■-■ (⌐■_■)
+fight (ง •̀_•́)ง
 ```
 
 Then run `./install.sh` again. If a name can't be used (too long, or it clashes with another
@@ -141,11 +143,11 @@ name), the install prints a warning. Good additions are welcome as pull requests
 **In `~/.XCompose`**: add lines after the include line. They stay yours and survive updates:
 
 ```
-<Multi_key> <Multi_key> <l> <o> <d> : "ಠ_ಠ"
+<Multi_key> <Multi_key> <f> <l> <e> <x> : "ᕦ(ò_óˇ)ᕤ"
 ```
 
 Here, pick a name that isn't the beginning of an existing name, and that no existing name is
-the beginning of (check with `grep '# lo' ~/.XCompose.emoji`). Otherwise one of the two
+the beginning of (check with `grep '# fl' ~/.XCompose.emoji`). Otherwise one of the two
 sequences stops working, and nothing warns you.
 
 Don't edit `~/.XCompose.emoji`: it is replaced on every install.
