@@ -130,7 +130,8 @@ Besides emoji, this project ships text faces (`tflip` → (╯°□°)╯︵ ┻
 `melt` → 🫠, `check` → ✅…). They are all listed in [`custom.txt`](custom.txt). You can add your
 own in two ways.
 
-**In `custom.local.txt`**: create this file next to `custom.txt`. It is not tracked by git, so
+### Option 1: in `custom.local.txt`
+Create a `custom.local.txt` file next to `custom.txt`. It is not tracked by git, so
 it never gets in the way of `git pull`. One line per sequence, the name (8 characters max, no
 spaces), a space, then the text:
 
@@ -142,7 +143,8 @@ Then run `./install.sh` again. Your names win over the built-in ones. If a name 
 (too long, or it clashes with another name), the install prints a warning. Good additions are
 welcome as pull requests to `custom.txt`.
 
-**In `~/.XCompose`**: add lines after the include line. They stay yours and survive updates:
+### Option 2: `~/.XCompose`
+Add lines after the include line. They stay yours and survive updates:
 
 ```
 <Multi_key> <Multi_key> <f> <l> <e> <x> : "ᕦ(ò_óˇ)ᕤ"
