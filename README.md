@@ -128,7 +128,14 @@ downloads the latest emoji lists and leaves your `~/.XCompose` alone.
 Besides emoji, this project ships text faces (`tflip` → (╯°□°)╯︵ ┻━┻, `meh` → ¯\\\_(ツ)\_/¯,
 `lod` → ಠ_ಠ…) and short names for popular emoji whose usual name is too long (`hrteyes` → 😍,
 `melt` → 🫠, `check` → ✅…). They are all listed in [`custom.txt`](custom.txt). You can add your
-own in two ways.
+own in two ways:
+
+- `custom.local.txt` is the simplest and is checked for you, but names are 8 characters max
+  (letters, digits and `+-_:'.!&`), always start with `Compose` `Compose`, and only apply after
+  running `./install.sh` again. The file lives in your copy of this project.
+- `~/.XCompose` accepts any key sequence (up to 10 keys) and applies at your next login,
+  without reinstalling. But nothing checks it, and a later update can add a name that clashes
+  with yours.
 
 ### Option 1: in `custom.local.txt`
 Create a `custom.local.txt` file next to `custom.txt`. It is not tracked by git, so
@@ -139,8 +146,10 @@ spaces), a space, then the text:
 fight (ง •̀_•́)ง
 ```
 
-Then run `./install.sh` again. Your names win over the built-in ones. If a name can't be used
-(too long, or it clashes with another name), the install prints a warning. Good additions are
+Then run `./install.sh` again. Your names win over built-in ones with the same name. If a name
+can't be used (too long, or it clashes with another name), the install prints a warning. But a
+name of 3 characters or more that starts a built-in emoji name (`fir`) hides that emoji
+(`fire`) without a warning. Good additions are
 welcome as pull requests to `custom.txt`.
 
 ### Option 2: `~/.XCompose`
