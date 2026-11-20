@@ -103,7 +103,16 @@ Names are the GitHub/Slack emoji short names (see this
   table built into Chrome, so `Compose` `Compose` cancels the sequence and the name is typed as
   text. Workaround (tested on KDE): install `fcitx5`, select it in System Settings → Keyboard →
   Virtual Keyboard, and start Chrome with
-  `--enable-wayland-ime --wayland-text-input-version=3`. Running Chrome on X11
+  `--enable-wayland-ime --wayland-text-input-version=3`. To keep the flags, copy Chrome's menu
+  entry into your home folder with the flags added to each `Exec=` line:
+
+  ```sh
+  mkdir -p ~/.local/share/applications
+  sed 's|^Exec=/usr/bin/google-chrome-stable|& --enable-wayland-ime --wayland-text-input-version=3|' \
+    /usr/share/applications/google-chrome.desktop > ~/.local/share/applications/google-chrome.desktop
+  ```
+
+  If you start Chrome from a taskbar pin, unpin and pin it again. Running Chrome on X11
   (`--ozone-platform=x11`) may also work (untested, and only short names may work there).
 
 ## Update
