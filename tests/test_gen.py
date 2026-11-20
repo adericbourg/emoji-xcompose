@@ -1,6 +1,8 @@
+import os
+import tempfile
 import unittest
 
-from src.gen_emoji_xcompose import build, keysyms, parse_custom, parse_gemoji, parse_wincompose
+from src.gen_emoji_xcompose import build, keysyms, parse_custom, parse_gemoji, parse_wincompose, read_custom
 
 
 class GenTest(unittest.TestCase):
@@ -34,6 +36,14 @@ class GenTest(unittest.TestCase):
     def test_parse_custom(self):
         text = "# comment\n\ntflip (╯°□°)╯︵ ┻━┻\nlenny ( ͡° ͜ʖ ͡°)\n"
         self.assertEqual(parse_custom(text), [("tflip", "(╯°□°)╯︵ ┻━┻"), ("lenny", "( ͡° ͜ʖ ͡°)")])
+
+    def test_read_custom(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "custom.local.txt")
+            self.assertEqual(read_custom(path), [])
+            with open(path, "w", encoding="utf-8") as f:
+                f.write("fight (ง •̀_•́)ง\n")
+            self.assertEqual(read_custom(path), [("fight", "(ง •̀_•́)ง")])
 
     def test_parsers(self):
         self.assertEqual(parse_gemoji([{"emoji": "👍", "aliases": ["+1", "thumbsup"]}, {"aliases": ["x"]}]),

@@ -1,6 +1,7 @@
 # Extra sequences, added to the emoji ones: Compose Compose <name> -> <value>.
 # One per line: the name (no spaces, 8 characters max), a space, then the value.
 # These win over gemoji and WinCompose names. Lines starting with # are ignored.
+# For your own sequences, use custom.local.txt (same format, not tracked by git).
 
 tflip (╯°□°)╯︵ ┻━┻
 lenny ( ͡° ͜ʖ ͡°)
