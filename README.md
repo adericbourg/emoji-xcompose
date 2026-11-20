@@ -101,10 +101,10 @@ Names are the GitHub/Slack emoji short names (see this
   work in them.
 - **Chrome (and likely Electron apps) on Wayland** ignore `~/.XCompose`: they use a Compose
   table built into Chrome, so `Compose` `Compose` cancels the sequence and the name is typed as
-  text. Untested workarounds: run Chrome on X11 (`--ozone-platform=x11`; only short names may
-  work there),
-  or use an input method such as fcitx5 and start Chrome with
-  `--enable-wayland-ime --wayland-text-input-version=3`.
+  text. Workaround (tested on KDE): install `fcitx5`, select it in System Settings → Keyboard →
+  Virtual Keyboard, and start Chrome with
+  `--enable-wayland-ime --wayland-text-input-version=3`. Running Chrome on X11
+  (`--ozone-platform=x11`) may also work (untested, and only short names may work there).
 
 ## Update
 
