@@ -27,7 +27,7 @@ from GitHub and Slack (`:sob:`, `:+1:`, `:fire:`…). It installs two files in y
   doesn't exist yet, it is created and also keeps your usual Compose sequences (é, ©, →…).
 
 Nothing runs in the background and nothing is installed system-wide. It works in KDE, GNOME and
-most other desktops, on Wayland and X11.
+most other desktops, on Wayland and X11 (except Chrome on Wayland, see [Limits](#limits)).
 
 ## Before you start: get a Compose key
 
@@ -99,6 +99,12 @@ Names are the GitHub/Slack emoji short names (see this
   (`heart` over `hearts`), except 1–2 letter names, which give way (`ok_hand` over `ok`).
 - **Some older apps** (built with GTK 3) handle only shorter sequences, so only short names may
   work in them.
+- **Chrome (and likely Electron apps) on Wayland** ignore `~/.XCompose`: they use a Compose
+  table built into Chrome, so `Compose` `Compose` cancels the sequence and the name is typed as
+  text. Untested workarounds: run Chrome on X11 (`--ozone-platform=x11`; only short names may
+  work there),
+  or use an input method such as fcitx5 and start Chrome with
+  `--enable-wayland-ime --wayland-text-input-version=3`.
 
 ## Update
 
